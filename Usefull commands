@@ -4,3 +4,12 @@ Find Large Workspaces:
 
 Delete Workspaces for Completed Jobs: Remove workspace folders manually for jobs that don’t need them:
   rm -rf /var/lib/jenkins/workspace/<job-name>
+
+GIT Commands
+git add . or git add <filename>
+
+git commit -m "message"
+
+git push origin main
+
+git pull origin main     #to pull changes from remote branch
