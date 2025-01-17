@@ -6,10 +6,16 @@ Delete Workspaces for Completed Jobs: Remove workspace folders manually for jobs
   rm -rf /var/lib/jenkins/workspace/<job-name>
 
 GIT Commands
-git add . or git add <filename>
+git add . or git add <filename>  #stage changes
 
-git commit -m "message"
+git commit -m "message" <filename>  #commit file
 
-git push origin main
+git push origin main  #push it to remote
 
 git pull origin main     #to pull changes from remote branch
+
+git branch  # view all branches
+
+git checkout <beranch name> # to switch branch
+
+git status  # view staged files
