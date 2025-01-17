@@ -8,6 +8,9 @@ pipeline {
         registryCredentials = 'ecr:us-east-1:awscreds'
         imageName = "911167907720.dkr.ecr.us-east-1.amazonaws.com/vprofileappimage"
         vprofileRegistry = "https://911167907720.dkr.ecr.us-east-1.amazonaws.com"
+        ECS_CLUSTER_NAME = 'DevCluster' // Replace with your ECS cluster name
+        ECS_SERVICE_NAME = 'vprofileappsvc' // Replace with your ECS service name
+        AWS_REGION = 'us-east-1'                  // AWS Region
     }    
     stages {
         stage('Fetch code') {
@@ -77,13 +80,30 @@ pipeline {
                     }
                 }
             }
+        stage('Deploy to ECS') {
+            steps {
+                script {
+                    echo "Deploying to ECS..."
+                    withAWS(credentials: 'awscreds') {
+                    sh '''
+                    aws ecs update-service \
+                    --cluster $ECS_CLUSTER_NAME \
+                    --service $ECS_SERVICE_NAME \
+                    --force-new-deployment \
+                    --region $AWS_REGION
+                '''
+            }
+        }
+    }
+}
+
         }                
     post {
         success {
-            echo 'Artifact uploaded to ECR!'
+            echo 'Deployment to ECS completed successfully!'
         }
         failure {
-            echo 'Build or upload failed.'
+            echo 'Pipeline failed. Check the logs for details.'
         }
     }
 }
