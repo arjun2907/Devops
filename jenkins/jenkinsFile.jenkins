@@ -96,6 +96,14 @@ pipeline {
         }
     }
 }
+        stage('Workspace Cleanup') { // New Cleanup Stage
+            steps {
+                script {
+                    echo "Cleaning up the workspace..."
+                    cleanWs() // Cleans the workspace
+                }
+            }
+        }
 
         }                
     post {
