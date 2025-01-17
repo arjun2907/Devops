@@ -96,7 +96,7 @@ pipeline {
         }
     }
 }
-        stage('Workspace Cleanup') { // New Cleanup Stage
+        stage('Workspace Cleanup') { // Cleanup Stage
             steps {
                 script {
                     echo "Cleaning up the workspace..."
