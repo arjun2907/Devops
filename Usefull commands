@@ -1,0 +1,6 @@
+Clean Up Workspaces
+Find Large Workspaces:
+  du -sh /var/lib/jenkins/workspace/* | sort -h
+
+Delete Workspaces for Completed Jobs: Remove workspace folders manually for jobs that don’t need them:
+  rm -rf /var/lib/jenkins/workspace/<job-name>
